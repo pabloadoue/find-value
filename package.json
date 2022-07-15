@@ -1,17 +1,25 @@
 {
   "name": "find-value",
-  "version": "1.0.12",
+  "version": "1.0.0",
   "description": "Find object values by passing the path as string.",
-  "main": "lib/index.js",
+  "main": "lib/index.ts",
   "directories": {
     "example": "example"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "tslint -p tsconfig.json",
+    "test": "jest --config jestconfig.json",
+    "prepare" : "npm run build",
+    "prepublishOnly" : "npm test && npm run lint",
+    "preversion" : "npm run lint",
+    "version" : "npm run format && git add -A src",
+    "postversion" : "git push && git push --tags"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/IonicaBizau/find-value.git"
+    "url": "git+ssh://git@github.com:pabloadoue/zero-fill.git"
   },
   "keywords": [
     "find",
@@ -19,25 +27,22 @@
     "object",
     "string"
   ],
-  "author": "Ionică Bizău <bizauionica@gmail.com> (https://ionicabizau.net)",
+  "author": "Pablo Adoue <pablo.adoue@me.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/IonicaBizau/find-value/issues"
+    "url": "https://github.com/pabloadoue/find-value/issues"
   },
-  "homepage": "https://github.com/IonicaBizau/find-value#readme",
+  "homepage": "https://github.com/pabloadoue/find-value#readme",
   "files": [
-    "bin/",
-    "app/",
-    "lib/",
-    "dist/",
-    "src/",
-    "scripts/",
-    "resources/",
-    "menu/",
-    "cli.js",
-    "index.js",
-    "bloggify.js",
-    "bloggify.json",
-    "bloggify/"
-  ]
+    "lib/**/*"
+  ],
+  "devDependencies": {
+    "@types/jest": "^28.1.5",
+    "jest": "^28.1.3",
+    "prettier": "^2.7.1",
+    "ts-jest": "^28.0.6",
+    "tslint": "^6.1.3",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^4.7.4"
+  }
 }
