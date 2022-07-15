@@ -1,6 +1,6 @@
 {
   "name": "@pabloadoue/find-value",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Find object values by passing the path as string.",
   "main": "lib/index.ts",
   "directories": {
