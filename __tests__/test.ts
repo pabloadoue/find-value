@@ -6,16 +6,19 @@ const TestObject = {
     number: 45,
     boolean: true,
     null: null,
+    array: ["a", "b", "c"],
     object: {
         string: "a",
         number: 45,
         boolean: true,
         null: null,
+        array: ["a", "b", "c"],
         object: {
             string: "a",
             number: 45,
             boolean: true,
             null: null,
+            array: ["a", "b", "c"],
             object: {
                 string: "a",
                 number: 45,
@@ -47,6 +50,13 @@ describe("Top Level Properties", () => {
         expect(typeof findValue(TestObject, "null")).toBe("object");
     });
 
+    test("Array Object", () => {
+        expect(findValue(TestObject, "array.0")).toBe("a");
+        expect(findValue(TestObject, "array.1")).toBe("b");
+        expect(findValue(TestObject, "array.2")).toBe("c");
+        expect(Array.isArray(findValue(TestObject, "array"))).toBe(true);
+    });
+
     test("Undefined Object", () => {
         expect(findValue(TestObject, "undefined")).toBe(undefined);
         expect(typeof findValue(TestObject, "undefined")).toBe("undefined");
@@ -74,6 +84,13 @@ describe("Second Level Properties", () => {
         expect(typeof findValue(TestObject, "object.null")).toBe("object");
     });
 
+    test("Array Object", () => {
+        expect(findValue(TestObject, "object.array.0")).toBe("a");
+        expect(findValue(TestObject, "object.array.1")).toBe("b");
+        expect(findValue(TestObject, "object.array.2")).toBe("c");
+        expect(Array.isArray(findValue(TestObject, "object.array"))).toBe(true);
+    });
+
     test("Undefined Object", () => {
         expect(findValue(TestObject, "undefined")).toBe(undefined);
         expect(typeof findValue(TestObject, "object.undefined")).toBe("undefined");
@@ -99,6 +116,13 @@ describe("Third Level Properties", () => {
     test("Null Object", () => {
         expect(findValue(TestObject, "object.object.null")).toBe(null);
         expect(typeof findValue(TestObject, "object.object.null")).toBe("object");
+    });
+
+    test("Array Object", () => {
+        expect(findValue(TestObject, "object.object.array.0")).toBe("a");
+        expect(findValue(TestObject, "object.object.array.1")).toBe("b");
+        expect(findValue(TestObject, "object.object.array.2")).toBe("c");
+        expect(Array.isArray(findValue(TestObject, "object.object.array"))).toBe(true);
     });
 
     test("Undefined Object", () => {
